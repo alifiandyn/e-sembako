@@ -2,7 +2,7 @@
 <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
     <div class="row px-xl-5 pt-5">
         <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-            <a href="<?= base_url('Shop') ?>" class="text-decoration-none">
+            <a href="<?= base_url() ?>" class="text-decoration-none">
                 <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Sembako</h1>
             </a>
             <p style="text-align: justify;">E-Sembako adalah sebuah platform untuk memudahkan masyarakat dalam mencari sembako (sembilan bahan pokok).</p>
@@ -15,7 +15,7 @@
                 <div class="col-md-4 mb-5">
                     <h5 class="font-weight-bold text-dark mb-4">Kebijakan dan Lain-lain</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-dark mb-2" href="<?= base_url('Shop'); ?>"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-dark mb-2" href="<?= base_url(); ?>"><i class="fa fa-angle-right mr-2"></i>Home</a>
                         <a class="text-dark mb-2" href="<?= base_url('About'); ?>"><i class="fa fa-angle-right mr-2"></i>Tentang Kami</a>
                         <a class="text-dark mb-2 btn disabled p-0 text-left" href=""><i class="fa fa-angle-right mr-2"></i>Karir</a>
                         <a class="text-dark mb-2 btn disabled p-0 text-left" href=""><i class="fa fa-angle-right mr-2"></i>Syarat dan Ketentuan</a>

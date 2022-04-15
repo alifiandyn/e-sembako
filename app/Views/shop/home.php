@@ -42,7 +42,7 @@
         <h2 class="section-title px-5"><span class="px-2">Produk Terbaru</span></h2>
     </div>
     <div class="row px-xl-5 pb-3">
-        <?php foreach ($products as $product) : ?>
+        <?php foreach ($newProducts as $product) : ?>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">

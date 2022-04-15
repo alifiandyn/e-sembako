@@ -19,11 +19,11 @@ class Shop extends BaseController
     public function index()
     {
         $getCategory = $this->productCaregoryModel->findAll();
-        $getProduct = $this->productModel->getAllProductAndImage();
+        $getProduct = $this->productModel->getAllProductAndImageNewest();
         $data = [
-            'title' => 'E-Sembako | Toko',
+            'title' => 'E-Sembako',
             'banner' => true,
-            'products' => $getProduct,
+            'newProducts' => $getProduct,
             'categories' => $getCategory
         ];
         return view('shop/home', $data);
@@ -38,5 +38,18 @@ class Shop extends BaseController
             'categories' => $getCategory
         ];
         return view('shop/about', $data);
+    }
+
+    public function Shop()
+    {
+        $getCategory = $this->productCaregoryModel->findAll();
+        $getProduct = $this->productModel->getAllProductAndImage();
+        $data = [
+            'title' => 'E-Sembako | Toko',
+            'banner' => false,
+            'products' => $getProduct,
+            'categories' => $getCategory
+        ];
+        return view('shop/shop', $data);
     }
 }

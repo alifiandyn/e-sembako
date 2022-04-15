@@ -12,8 +12,15 @@ class ProductModel extends Model
     protected $createdField  = 'CreatedAt';
     protected $updatedField  = 'UpdatedAt';
 
-    public function getAllProductAndImage(){
-        $query = $this->db->query('SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID`')->getResult('array');
-        return $query; 
+    public function getAllProductAndImageNewest()
+    {
+        $query = $this->db->query('SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID` ORDER BY `products`.`CreatedAt` DESC LIMIT 4')->getResult('array');
+        return $query;
+    }
+
+    public function getAllProductAndImage()
+    {
+        $query = $this->db->query('SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID` ORDER BY `products`.`CreatedAt` DESC')->getResult('array');
+        return $query;
     }
 }
