@@ -4,7 +4,7 @@
 <div class="login-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="" class="h1"><b>E</b>-Sembako</a>
+      <a href="<?= base_url() ?>" class="h1"><b>E</b>-Sembako</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">You are only one step a way from your new password, recover your password now.</p>
@@ -34,7 +34,7 @@
       </form>
 
       <p class="mt-3 mb-1">
-        <a href="<?= base_url();?>">Login</a>
+        <a href="<?= base_url('Auth/SignIn'); ?>">Login</a>
       </p>
     </div>
     <!-- /.login-card-body -->

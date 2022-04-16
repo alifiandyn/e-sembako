@@ -32,8 +32,17 @@
                         <a href="detail.html" class="nav-item nav-link">Program Subsidi</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="" class="nav-item nav-link">Login</a>
-                        <a href="" class="nav-item nav-link">Register</a>
+                        <?php if (session()->get('Email')) : ?>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= session()->get('Email'); ?></a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="<?= base_url('Auth/SignoutProcess') ?>" class="dropdown-item">Sign Out</a>
+                                </div>
+                            </div>
+                        <?php else : ?>
+                            <a href="<?= base_url('Auth/SignIn') ?>" class="nav-item nav-link">Login</a>
+                            <a href="<?= base_url('Auth/SignUp') ?>" class="nav-item nav-link">Register</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </nav>

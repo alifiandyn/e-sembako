@@ -132,5 +132,6 @@
         </div>
     </div>
     <!-- Shop End -->
+
     <?= $this->include('layout/footer'); ?>
     <?= $this->endSection(); ?>
