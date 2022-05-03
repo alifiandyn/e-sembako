@@ -40,6 +40,75 @@
 
     <!-- Template Javascript -->
     <script src="<?= base_url('dist/js/main.js') ?>"></script>
+    <script>
+        // function GetDataCart() {
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: '<?= base_url('/api/cart'); ?>',
+        //         contentType: "application/json",
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             $.each(result, function(index, value) {
+        //                 $('.cart-contents').append(`<tr>
+        //                         <td class="align-middle"><img src="<?= base_url('dist') ?>/img/product-1.jpg" alt="" style="width: 50px;">${result[index].ProductName}</td>
+        //                         <td class="align-middle">321312312</td>
+        //                         <td class="align-middle">
+        //                             <div class="input-group quantity mx-auto" style="width: 100px;">
+        //                                 <div class="input-group-btn">
+        //                                     <button class="btn btn-sm btn-primary btn-minus">
+        //                                         <i class="fa fa-minus"></i>
+        //                                     </button>
+        //                                 </div>
+        //                                 <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${result[index].TotalBuy}" id="total-buy">
+        //                                 <div class="input-group-btn">
+        //                                     <button class="btn btn-sm btn-primary btn-plus">
+        //                                         <i class="fa fa-plus"></i>
+        //                                     </button>
+        //                                 </div>
+        //                             </div>
+        //                         </td>
+        //                         <td class="align-middle">${result[index].Price * result[index].TotalBuy}</td>
+        //                         <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+        //                     </tr>`);
+        //             });
+        //         },
+        //         error: function(error) {
+        //             console.log(error);
+        //         }
+        //     });
+        // }
+        // GetDataCart();
+
+        const rupiah = (number) => {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(number);
+        }
+
+        const QtyChange = (i, operation) => {
+            const getItem = $("#total-buy-" + i);
+            const unitPrice = getItem.data("unit-price");
+            const totalPrice = $("#total-price").val();
+            let qty;
+            if (operation == 'minus') {
+                qty = parseInt(getItem.val()) - 1;
+            } else if (operation = 'plus') {
+                qty = parseInt(getItem.val()) + 1;
+            } else {
+                qty = getItem.val();
+            }
+            const totalPriceItem = unitPrice * qty;
+            const totalPriceNewest = (totalPrice - unitPrice) + totalPriceItem;
+            $("#total-price-" + i).text(rupiah(totalPriceItem));
+            $("#total-price-info").text(rupiah(totalPriceNewest));
+            $("#total-invoice").text(rupiah(totalPriceNewest + 10000));
+        }
+
+        $(window).on('load', function() {
+            $('#modalNotification').modal('show');
+        });
+    </script>
 </body>
 
 </html>

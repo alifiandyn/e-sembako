@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
                                     <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                    <a href="<?= base_url('Cart/Add/' . $product["ProductID"]); ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -132,6 +132,30 @@
         </div>
     </div>
     <!-- Shop End -->
+
+    <!-- Modal Notification -->
+    <?php if (session()->getFlashdata('message')) : ?>
+        <div class="modal fade" id="modalNotification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Notifikasi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <?= session()->getFlashdata('message');  ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <!-- Modal Notification -->
 
     <?= $this->include('layout/footer'); ?>
     <?= $this->endSection(); ?>

@@ -37,6 +37,8 @@ $routes->get('/Auth/ForgotPassword', 'Auth::ForgotPassword');
 $routes->get('/', 'Shop::index');
 $routes->get('/Shop', 'Shop::Shop');
 $routes->get('/About', 'Shop::About');
+$routes->get('/Cart/Add/(:any)', 'Shop::CartAdd/$1');
+$routes->get('/Cart/Delete/(:any)', 'Shop::CartDelete/$1');
 
 /*
  * --------------------------------------------------------------------
