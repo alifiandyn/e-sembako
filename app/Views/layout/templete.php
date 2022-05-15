@@ -89,6 +89,8 @@
         const QtyChange = (i, operation) => {
             const getItem = $("#total-buy-" + i);
             const unitPrice = getItem.data("unit-price");
+            const cartDetailId = getItem.data("detail-id");
+            console.log(cartDetailId)
             const totalPrice = $("#total-price").val();
             let qty;
             if (operation == 'minus') {
@@ -103,11 +105,65 @@
             $("#total-price-" + i).text(rupiah(totalPriceItem));
             $("#total-price-info").text(rupiah(totalPriceNewest));
             $("#total-invoice").text(rupiah(totalPriceNewest + 10000));
+            $.ajax({
+                type: 'get',
+                url: '<?= base_url('api/updateqtyoncart'); ?>',
+                contentType: "application/json",
+                data: {
+                    cartDetailId: cartDetailId,
+                    qty: qty
+                },
+                dataType: 'json',
+                success: function(result) {
+                    console.log(result);
+                }
+            });
+        }
+
+        const GetDataShippingAddress = () => {
+            const ShippingAddressID = $('#selectShippingAddress').val();
+            if (ShippingAddressID != 0) {
+                $.ajax({
+                    type: 'get',
+                    url: '<?= base_url('api/getshippingaddress'); ?>',
+                    contentType: "application/json",
+                    data: {
+                        ShippingAddressID
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $("#first-name-info").val(result.FirstName);
+                        $("#last-name-info").val(result.LastName);
+                        $("#email-info").val(result.Email);
+                        $("#phone-number-info").val(result.PhoneNumber);
+                        $("#province-info").val(result.Province);
+                        $("#city-info").val(result.City);
+                        $("#subdistrict-info").val(result.Subdistrict);
+                        $("#ward-info").val(result.Ward);
+                        $("#street-info").val(result.Street);
+                    }
+                });
+            } else {
+                $("#first-name-info").val(" ");
+                $("#last-name-info").val(" ");
+                $("#email-info").val(" ");
+                $("#phone-number-info").val(" ");
+                $("#province-info").val(" ");
+                $("#city-info").val(" ");
+                $("#subdistrict-info").val(" ");
+                $("#ward-info").val(" ");
+                $("#street-info").val(" ");
+            }
         }
 
         $(window).on('load', function() {
             $('#modalNotification').modal('show');
         });
+
+        $('#customFile').change(function() {
+            const filename = $('#customFile').val().replace(/.*(\/|\\)/, '');
+            $('.custom-file-label').text(filename);
+        })
     </script>
 </body>
 

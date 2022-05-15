@@ -16,6 +16,11 @@ class ProductModel extends Model
     public function getAllProductAndImageNewest()
     {
         $query = $this->db->query('SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID` ORDER BY `products`.`CreatedAt` DESC LIMIT 4')->getResult('array');
+        $i = 0;
+        foreach ($query as $value) {
+            $query[$i]['ProductID'] = Uuid::fromBytes($value['ProductID'])->toString();
+            $i++;
+        }
         return $query;
     }
 
@@ -27,6 +32,14 @@ class ProductModel extends Model
             $query[$i]['ProductID'] = Uuid::fromBytes($value['ProductID'])->toString();
             $i++;
         }
+        return $query;
+    }
+
+    public function getProductAndImage($productId)
+    {
+        $productId = Uuid::fromString($productId)->getBytes();
+        $query = $this->db->query("SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID` AND `products`.`ProductID`='$productId';")->getRowArray();
+        $query['ProductID'] = Uuid::fromBytes($query['ProductID'])->toString();
         return $query;
     }
 }

@@ -16,7 +16,6 @@ class CartModel extends Model
         return $query;
     }
 
-
     public function CreateUserCart($UserID)
     {
         $now = date_create()->format('Y-m-d H:i:s');
@@ -70,6 +69,20 @@ class CartModel extends Model
             $query[$i]['ProductCategoryID'] = Uuid::fromBytes($value['ProductCategoryID'])->toString();
             $i++;
         }
+        return $query;
+    }
+
+    public function UpdateQtyOnCart($cartDetailId, $qty)
+    {
+        $cartDetailId = Uuid::fromString($cartDetailId)->getBytes();
+        $query = $this->db->query("UPDATE `user_cart_detail` SET `TotalBuy`='$qty' WHERE `CartDetailID`='$cartDetailId';");
+        return $query;
+    }
+
+    public function UpdateStatusCart($cartId)
+    {
+        $cartId = Uuid::fromString($cartId)->getBytes();
+        $query = $this->db->query("UPDATE `user_cart` SET `CartStatus`=1 WHERE `CartID`='$cartId';");
         return $query;
     }
 }

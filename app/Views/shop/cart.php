@@ -33,7 +33,7 @@
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm bg-secondary text-center total-buy" value="<?= $product['TotalBuy']; ?>" id="total-buy-<?= $i ?>" onchange="QtyChange(<?= $i ?>,'')" data-unit-price="<?= $product['Price'] ?>">
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-center total-buy" value="<?= $product['TotalBuy']; ?>" id="total-buy-<?= $i ?>" onchange="QtyChange(<?= $i ?>,'')" data-unit-price="<?= $product['Price'] ?>" data-detail-id="<?= $product['CartDetailID'] ?>">
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm btn-primary btn-plus" onclick="QtyChange(<?= $i ?>,'plus')">
                                                 <i class="fa fa-plus"></i>
@@ -75,10 +75,10 @@
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total Harga</h5>
+                            <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold" id="total-invoice"><?= rupiah($totalHarga + 10000); ?></h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Lanjut Pembayaran</button>
+                        <a href="<?= base_url('Checkout'); ?>" class="btn btn-block btn-primary my-3 py-3">Lanjut Pembayaran</a>
                     </div>
                 </div>
             </div>

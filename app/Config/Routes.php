@@ -37,8 +37,17 @@ $routes->get('/Auth/ForgotPassword', 'Auth::ForgotPassword');
 $routes->get('/', 'Shop::index');
 $routes->get('/Shop', 'Shop::Shop');
 $routes->get('/About', 'Shop::About');
+$routes->get('/Product/(:any)', 'Shop::ProductDetail/$1');
+$routes->get('/Checkout/', 'Shop::Checkout');
+$routes->post('/Checkout/AddShippingAddress', 'Shop::AddNewShippingAddress');
+$routes->post('/Order', 'Shop::CreateOrder');
 $routes->get('/Cart/Add/(:any)', 'Shop::CartAdd/$1');
 $routes->get('/Cart/Delete/(:any)', 'Shop::CartDelete/$1');
+
+// Routes API request via ajax
+$routes->get('/api/getshippingaddress', 'Shop::GetShippingAddressData');
+$routes->get('/api/updateqtyoncart', 'Shop::UpdateQtyOnCart');
+// Routes API request via ajax
 
 /*
  * --------------------------------------------------------------------

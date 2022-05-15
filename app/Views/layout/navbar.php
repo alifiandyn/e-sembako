@@ -10,7 +10,7 @@
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <?php foreach ($categories as $category) : ?>
-                            <a href="" class="nav-item nav-link"><?= $category["CategoryName"]; ?></a>
+                            <a href="<?= base_url('Shop/' . $category["ProductCategoryID"]); ?>" class="nav-item nav-link"><?= $category["CategoryName"]; ?></a>
                         <?php endforeach; ?>
                     </div>
                 </nav>
@@ -28,8 +28,8 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="<?= base_url() ?>" class="nav-item nav-link active">Home</a>
                         <a href="<?= base_url('Shop') ?>" class="nav-item nav-link">Toko</a>
-                        <a href="detail.html" class="nav-item nav-link">Promo Ramadhan</a>
-                        <a href="detail.html" class="nav-item nav-link">Program Subsidi</a>
+                        <a href="" class="nav-item nav-link disabled" disabled>Promo Ramadhan</a>
+                        <a href="" class="nav-item nav-link disabled" disabled>Program Subsidi</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
                         <?php if (session()->get('Email')) : ?>
