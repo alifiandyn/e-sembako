@@ -15,6 +15,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= session()->get('Email'); ?></a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href="<?= base_url('Auth/SignoutProcess') ?>" class="dropdown-item">Sign Out</a>
+            </div>
+        </div>
+
         <!-- Navbar Search -->
         <!-- <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">

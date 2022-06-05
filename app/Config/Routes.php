@@ -38,19 +38,19 @@ $routes->get('/', 'Shop::index');
 $routes->get('/Shop', 'Shop::Shop');
 $routes->get('/About', 'Shop::About');
 $routes->get('/Product/(:any)', 'Shop::ProductDetail/$1');
-$routes->get('/Checkout/', 'Shop::Checkout');
+$routes->get('/Checkout/', 'Shop::Checkout', ['filter' => 'authuser']);
 $routes->post('/Checkout/AddShippingAddress', 'Shop::AddNewShippingAddress');
 $routes->post('/Order', 'Shop::CreateOrder');
 $routes->get('/Cart/Add/(:any)', 'Shop::CartAdd/$1');
 $routes->get('/Cart/Delete/(:any)', 'Shop::CartDelete/$1');
 
-$routes->get('/Admin/', 'Admin::index');
-$routes->get('/Admin/Product', 'Admin::Product');
-$routes->get('/Admin/ProductStatus/(:num)/(:any)', 'Admin::ProductStatus/$1/$2');
-$routes->post('/Admin/Product/Add', 'Admin::AddNewProduct');
-$routes->post('/Admin/Product/Edit', 'Admin::EditProduct');
-$routes->get('/Admin/DetailOrder/(:any)', 'Admin::DetailOrder/$1');
-$routes->get('/Admin/OrderStatus/(:alpha)/(:any)', 'Admin::OrderStatusUpdate/$1/$2');
+$routes->get('/Admin/', 'Admin::index', ['filter' => 'authadmin']);
+$routes->get('/Admin/Product', 'Admin::Product', ['filter' => 'authadmin']);
+$routes->get('/Admin/ProductStatus/(:num)/(:any)', 'Admin::ProductStatus/$1/$2', ['filter' => 'authadmin']);
+$routes->post('/Admin/Product/Add', 'Admin::AddNewProduct', ['filter' => 'authadmin']);
+$routes->post('/Admin/Product/Edit', 'Admin::EditProduct', ['filter' => 'authadmin']);
+$routes->get('/Admin/DetailOrder/(:any)', 'Admin::DetailOrder/$1', ['filter' => 'authadmin']);
+$routes->get('/Admin/OrderStatus/(:alpha)/(:any)', 'Admin::OrderStatusUpdate/$1/$2', ['filter' => 'authadmin']);
 
 // Routes API request via ajax
 $routes->get('/api/getshippingaddress', 'Shop::GetShippingAddressData');
