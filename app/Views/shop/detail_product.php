@@ -1,8 +1,8 @@
-    <?= $this->extend('layout/templete'); ?>
+    <?= $this->extend('shop/layout/templete'); ?>
 
     <?= $this->section('content'); ?>
-    <?= $this->include('layout/topbar'); ?>
-    <?= $this->include('layout/navbar'); ?>
+    <?= $this->include('shop/layout/topbar'); ?>
+    <?= $this->include('shop/layout/navbar'); ?>
 
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
@@ -249,5 +249,5 @@
     </div>
     <!-- Shop Detail End -->
 
-    <?= $this->include('layout/footer'); ?>
+    <?= $this->include('shop/layout/footer'); ?>
     <?= $this->endSection(); ?>

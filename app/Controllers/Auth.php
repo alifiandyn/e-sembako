@@ -62,6 +62,9 @@ class Auth extends BaseController
                         'RoleID' => $getUser[0]["RoleID"],
                     ];
                     session()->set($data);
+                    if ($getUser[0]["RoleID"] == 1) {
+                        return redirect()->to('/Admin');
+                    }
                     return redirect()->to('/');
                 } else {
                     session()->setFlashdata('message', 'Password yang anda masukan salah, silahkan coba lagi!');
@@ -106,7 +109,7 @@ class Auth extends BaseController
                         ];
                         $this->authModel->RegisterNewUser($data);
                         session()->setFlashdata('message', 'Registrasi akun anda berhasil, silahkan signin untuk melanjutkan!');
-                        return redirect()->to('/Auth/SignUp');
+                        return redirect()->to('/Auth/SignIn');
                     }
                 }
             }

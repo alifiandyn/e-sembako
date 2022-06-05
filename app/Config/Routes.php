@@ -44,9 +44,18 @@ $routes->post('/Order', 'Shop::CreateOrder');
 $routes->get('/Cart/Add/(:any)', 'Shop::CartAdd/$1');
 $routes->get('/Cart/Delete/(:any)', 'Shop::CartDelete/$1');
 
+$routes->get('/Admin/', 'Admin::index');
+$routes->get('/Admin/Product', 'Admin::Product');
+$routes->get('/Admin/ProductStatus/(:num)/(:any)', 'Admin::ProductStatus/$1/$2');
+$routes->post('/Admin/Product/Add', 'Admin::AddNewProduct');
+$routes->post('/Admin/Product/Edit', 'Admin::EditProduct');
+$routes->get('/Admin/DetailOrder/(:any)', 'Admin::DetailOrder/$1');
+$routes->get('/Admin/OrderStatus/(:alpha)/(:any)', 'Admin::OrderStatusUpdate/$1/$2');
+
 // Routes API request via ajax
 $routes->get('/api/getshippingaddress', 'Shop::GetShippingAddressData');
 $routes->get('/api/updateqtyoncart', 'Shop::UpdateQtyOnCart');
+$routes->get('/api/getdataproduct/(:any)', 'Admin::GetDataProduct/$1');
 // Routes API request via ajax
 
 /*

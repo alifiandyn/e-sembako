@@ -72,6 +72,12 @@ class CartModel extends Model
         return $query;
     }
 
+    public function GetDataCartDetail($cartId)
+    {
+        $query = $this->db->query("SELECT * FROM `user_cart_detail`  JOIN `products` ON `products`.`ProductID` = `user_cart_detail`.`ProductID`  JOIN `product_img` ON `product_img`.`ProductID` = `products`.`ProductID` WHERE `user_cart_detail`.`CartID`='$cartId';")->getResultArray();
+        return $query;
+    }
+
     public function UpdateQtyOnCart($cartDetailId, $qty)
     {
         $cartDetailId = Uuid::fromString($cartDetailId)->getBytes();

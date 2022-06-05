@@ -1,8 +1,8 @@
-    <?= $this->extend('layout/templete'); ?>
+    <?= $this->extend('shop/layout/templete'); ?>
 
     <?= $this->section('content'); ?>
-    <?= $this->include('layout/topbar'); ?>
-    <?= $this->include('layout/navbar'); ?>
+    <?= $this->include('shop/layout/topbar'); ?>
+    <?= $this->include('shop/layout/navbar'); ?>
 
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
@@ -61,5 +61,5 @@
     </div>
     </div>
     <!-- Contact End -->
-    <?= $this->include('layout/footer'); ?>
+    <?= $this->include('shop/layout/footer'); ?>
     <?= $this->endSection(); ?>
