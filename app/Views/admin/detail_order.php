@@ -168,8 +168,8 @@
                                 <!-- this row will not appear when printing -->
                                 <div class="row no-print">
                                     <div class="col-12">
-                                        <!-- <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                        <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+                                        <a href="<?= base_url('Admin/PrintInvoice/' . $dataUserOrder['UserOrderID']) ?>" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                                        <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
                                             Payment
                                         </button> -->
                                         <a href="<?= base_url('Admin/OrderStatus/Send/' . $dataUserOrder['UserOrderID']) ?>" class="btn btn-success float-right <?= $dataUserOrder['OrderStatus'] == 0 || $dataUserOrder['OrderStatus'] == 1 || $dataUserOrder['OrderStatus'] == 3 || $dataUserOrder['OrderStatus'] == 4 ? "disabled" : ""; ?>" style="margin-right: 5px;">

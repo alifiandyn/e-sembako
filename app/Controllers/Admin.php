@@ -61,6 +61,19 @@ class Admin extends BaseController
         return view('admin/detail_order', $data);
     }
 
+    public function PrintInvoice($orderId)
+    {
+        $getDataUserOrder = $this->orderModel->GetOrderById($orderId);
+        $getDataCartOrder = $this->cartModel->GetDataCartDetail($getDataUserOrder['CartID']);
+        $data = [
+            'title' => 'E-Sembako | Print Invoice',
+            'dataUserOrder' => $getDataUserOrder,
+            'dataCartOrder' => $getDataCartOrder,
+            "validation" => \Config\Services::validation()
+        ];
+        return view('admin/invoice_print', $data);
+    }
+
     public function OrderStatusUpdate($status, $orderId)
     {
         $statusOrder = 0;

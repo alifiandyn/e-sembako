@@ -50,6 +50,7 @@ $routes->get('/Admin/ProductStatus/(:num)/(:any)', 'Admin::ProductStatus/$1/$2',
 $routes->post('/Admin/Product/Add', 'Admin::AddNewProduct', ['filter' => 'authadmin']);
 $routes->post('/Admin/Product/Edit', 'Admin::EditProduct', ['filter' => 'authadmin']);
 $routes->get('/Admin/DetailOrder/(:any)', 'Admin::DetailOrder/$1', ['filter' => 'authadmin']);
+$routes->get('/Admin/PrintInvoice/(:any)', 'Admin::PrintInvoice/$1', ['filter' => 'authadmin']);
 $routes->get('/Admin/OrderStatus/(:alpha)/(:any)', 'Admin::OrderStatusUpdate/$1/$2', ['filter' => 'authadmin']);
 
 // Routes API request via ajax
