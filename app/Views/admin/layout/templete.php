@@ -46,7 +46,8 @@
 <!-- Bootstrap 4 -->
 <script src="<?= base_url(); ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<script src="<?= base_url(); ?>/plugins/chart.js/Chart.min.js"></script>
+<!-- <script src="<?= base_url(); ?>/plugins/chart.js/Chart.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Sparkline -->
 <script src="<?= base_url(); ?>/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -64,7 +65,7 @@
 <!-- overlayScrollbars -->
 <script src="<?= base_url(); ?>/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url(); ?>/dist/js/adminlte.js"></script>
+<script src="<?= base_url(); ?>/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -221,6 +222,39 @@
         const filename = $('#customFile').val().replace(/.*(\/|\\)/, '');
         $('.custom-file-label').text(filename);
     })
+
+    // Untuk Menampilkan Data Pada ChartJS
+    const dataProduct = <?= json_encode($dataTotalProductByCategory ?? ''); ?>;
+    const labels = [];
+    const dataLabel = [];
+
+    dataProduct.forEach(function(value) {
+        labels.push(value.CategoryName)
+    });
+
+    dataProduct.forEach(function(value) {
+        dataLabel.push(value.TotalProduct)
+    });
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Banyak Produk Berdasarkan Jenis Yang Dijual',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataLabel,
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
 </script>
 </body>
 

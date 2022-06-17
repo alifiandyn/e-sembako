@@ -20,4 +20,10 @@ class ProductCategoryModel extends Model
         }
         return $query;
     }
+
+    public function getTotalProductBaseOnCategory()
+    {
+        $query = $this->db->query("SELECT COUNT(t1.ProductID)AS TotalProduct, CategoryName FROM products as t1 JOIN product_category as t2 ON t1.ProductCategoryID = t2.ProductCategoryID GROUP BY CategoryName")->getResultArray();
+        return $query;
+    }
 }

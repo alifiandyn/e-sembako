@@ -36,6 +36,11 @@ class Admin extends BaseController
         $getTotalProduct = $this->productModel->CountTotalProduct();
         $getDataOrderWaitingCheck = $this->orderModel->CountTotalOrderByStatusOrder(0);
         $getDataOrderProcess = $this->orderModel->CountTotalOrderByStatusOrder(2);
+        $dataTotalProductByCategory = $this->productCategoryModel->getTotalProductBaseOnCategory();
+        // echo "<pre>";
+        // print_r($dataTotalProductByCategory);
+        // echo "</pre>";
+        // die;
         $data = [
             'title' => 'E-Sembako | Admin',
             'dataOrder' => $getDataOrder,
@@ -43,6 +48,7 @@ class Admin extends BaseController
             'totalProduct' => $getTotalProduct['TotalProduct'],
             'totalOrderWaitingCheck' => $getDataOrderWaitingCheck['OrderStatus'],
             'totalOrderProcess' => $getDataOrderProcess['OrderStatus'],
+            'dataTotalProductByCategory' => $dataTotalProductByCategory,
             "validation" => \Config\Services::validation()
         ];
         return view('admin/index.php', $data);

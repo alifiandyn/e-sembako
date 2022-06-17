@@ -103,6 +103,11 @@
                     <!-- Main row -->
                     <div class="row">
                         <div class="col-12">
+                            <div class="card card-body">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">DataTable with default features</h3>
