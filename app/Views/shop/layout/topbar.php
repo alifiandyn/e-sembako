@@ -37,13 +37,13 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-            <form action="">
+            <form action="<?= base_url('Shop') ?>" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari produk disini">
+                    <input type="text" class="form-control" placeholder="Cari Produk" name="keyword">
                     <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
+                        <button class="input-group-text bg-transparent text-primary" type="submit">
                             <i class="fa fa-search"></i>
-                        </span>
+                        </button>
                     </div>
                 </div>
             </form>

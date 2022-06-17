@@ -36,6 +36,17 @@ class ProductModel extends Model
         return $query;
     }
 
+    public function getAllProductAndImagePagination($keyword, $prevData, $limit)
+    {
+        $query = $this->db->query("SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID` AND `products`.`ProductStatus`=1 AND `ProductName` LIKE '%$keyword%' ORDER BY `products`.`CreatedAt` DESC LIMIT $prevData,$limit")->getResult('array');
+        $i = 0;
+        foreach ($query as $value) {
+            $query[$i]['ProductID'] = Uuid::fromBytes($value['ProductID'])->toString();
+            $i++;
+        }
+        return $query;
+    }
+
     public function getAllProductAndImageAdmin()
     {
         $query = $this->db->query('SELECT * FROM `products` JOIN `product_img` WHERE `product_img`.`ProductID` = `products`.`ProductID` ORDER BY `products`.`CreatedAt` DESC')->getResult('array');
@@ -57,9 +68,9 @@ class ProductModel extends Model
         return $query;
     }
 
-    public function CountTotalProduct()
+    public function CountTotalProduct($keyword = '')
     {
-        $query = $this->db->query("SELECT COUNT(ProductID) AS TotalProduct FROM Products;")->getRowArray();
+        $query = $this->db->query("SELECT COUNT(ProductID) AS TotalProduct FROM Products WHERE `ProductName` LIKE '%$keyword%';")->getRowArray();
         return $query;
     }
 

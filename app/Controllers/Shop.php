@@ -7,6 +7,7 @@ use App\Models\ProductCategoryModel;
 use App\Models\CartModel;
 use App\Models\OrderModel;
 use App\Models\ShippingModel;
+use CodeIgniter\Database\Query;
 use CodeIgniter\Session\Session;
 
 class Shop extends BaseController
@@ -59,15 +60,24 @@ class Shop extends BaseController
 
     public function Shop()
     {
+        $keyword = $this->request->getGet("keyword");
+        $limit = ($this->request->getGet("limit")) ? $this->request->getGet("limit") : 10;
+        $page = $this->request->getGet("page") ?? 0;
+        $skipData = (!$page || $page == 0) ? 0 : $this->request->getGet("page") * $limit;
         $countCart = $this->cartModel->CountCart(session()->get('UserID'));
         $getCategory = $this->productCategoryModel->findAll();
-        $getProduct = $this->productModel->getAllProductAndImage();
+        $getProduct = $this->productModel->getAllProductAndImagePagination($keyword, $skipData, $limit);
+        $getTotalData = $this->productModel->CountTotalProduct($keyword);
         $data = [
             'title' => 'E-Sembako | Toko',
             'banner' => false,
             'cart' => $countCart,
             'categories' => $getCategory,
-            'products' => $getProduct
+            'products' => $getProduct,
+            "page" => $page,
+            "keyword" => $keyword,
+            "limit" => $limit,
+            "totalData" => $getTotalData['TotalProduct']
         ];
         return view('shop/shop', $data);
     }
@@ -109,7 +119,7 @@ class Shop extends BaseController
             'cart' => $countCart,
             'cartContents' => $getCart,
             'listShippingAddress' => $getShippingAddress,
-            "validation" => \Config\Services::validation()
+            "validation" => \Config\Services::validation(),
         ];
         return view('shop/checkout', $data);
     }

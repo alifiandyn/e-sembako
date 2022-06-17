@@ -63,26 +63,35 @@
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <form action="">
+                            <form action="" method="GET">
                                 <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Cari Produk" name="keyword">
+                                    <!-- <input type="hidden" class="form-control" name="page" value="<?= $page ?>"> -->
+                                    <div class="input-group-append">
+                                        <button class="input-group-text bg-transparent text-primary" type="submit">
+                                            Cari &nbsp;<i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search by name">
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent text-primary">
                                             <i class="fa fa-search"></i>
                                         </span>
                                     </div>
-                                </div>
-                            </form>
-                            <div class="dropdown ml-4">
-                                <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Sort by
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Popularity</a>
-                                    <a class="dropdown-item" href="#">Best Rating</a>
-                                </div>
-                            </div>
+                                </div> -->
+                            <!-- <div class="dropdown ml-4">
+                                    <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Sort by
+                                    </button>
+                                    <button class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                        <a class="dropdown-item" href="#">Latest</a>
+                                        <a class="dropdown-item" href="#">Popularity</a>
+                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                    </button>
+                                </div> -->
                         </div>
                     </div>
                     <?php foreach ($products as $product) : ?>
@@ -108,17 +117,17 @@
                     <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center mb-3">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
+                                <li class="page-item <?= ($page == 0) ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?keyword=<?= $keyword ?>&page=<?= ($page == 0) ? '' : $page - 1 ?>" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="sr-only">Previous</span>
                                     </a>
                                 </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                <?php for ($i = 0; $totalData >= ($limit * ($i + 1)); $i++) : ?>
+                                    <li class="page-item <?= $page == $i ? 'active' : '' ?>"><a class="page-link" href="?keyword=<?= $keyword ?>&page=<?= $i ?>"><?= $i + 1 ?></a></li>
+                                <?php endfor; ?>
+                                <li class="page-item <?= ($totalData <= ($limit * ($page + 1))) ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?keyword=<?= $keyword ?>&page=<?= $page + 1 ?>" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span class="sr-only">Next</span>
                                     </a>
